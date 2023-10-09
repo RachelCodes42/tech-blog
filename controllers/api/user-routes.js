@@ -3,6 +3,7 @@ const { User, Blog } = require('../../models');
 
 // creating a new user //
 router.post('/', async (req, res) => {
+  console.log("This is the user",req.body)
   try {
     const userData = await User.create({
       username: req.body.username,
@@ -12,9 +13,10 @@ router.post('/', async (req, res) => {
     if (userData.username.includes(' ')) {
       res.json({ message: 'No spaces allowed in Username.' });
       return;
-    } else {
+    } 
+    // else {
       res.status(200).json(userData);
-    }
+    // }
 
   } catch (err) {
     res.status(500).json(err);
